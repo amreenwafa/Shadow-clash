@@ -1,3 +1,4 @@
+let score = 0; // Initialize score globally
 
 // document.onkeydown = function(e) {
 //     console.log("Pressed key is: ", e.key);
@@ -32,7 +33,8 @@ document.onkeydown = function(e) {
 //     dinoX =  parseInt(window.getComputedStyle(dino).getPropertyValue('left'));
 //     dino.style.left = dinox + 112 + "px";
         
-// }
+// } this code is for moving forword
+
 
 
 document.addEventListener('keydown', function(e) {
@@ -44,6 +46,23 @@ document.addEventListener('keydown', function(e) {
 });
 
 
+// if (e.key === 37) {  
+//     dino = document.querySelector9('.dino');
+//     dinoX =  parseInt(window.getComputedStyle(dino).getPropertyValue('left'));
+//     dino.style.left = (dinox - 112) + "px";
+        
+// } this code is for moving backword
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') {  // Changed 37 to 'ArrowLeft'
+        var dino = document.querySelector('.dino');  // Corrected typo
+        var dinoX = parseInt(window.getComputedStyle(dino).getPropertyValue('left'));
+
+        if (!isNaN(dinoX)) {  // Check if dinoX is a number
+            dino.style.left = (dinoX - 112) + "px";
+        }
+    }
+});
 
 
 
@@ -68,7 +87,8 @@ document.addEventListener('keydown', function(e) {
 //             obstacle.classList.remove('obstacleAni')
 //         }
 
-// }, 100);
+// }, 100); this code is for moving upward
+
 
 
 
@@ -92,5 +112,20 @@ setInterval(() => {
         gameover.style.visibility = 'visible';
         obstacle.classList.remove('obstacleAni');
     }
+    
+    else{
+        score += 1;
+        updateScore(score);
+    }
 
 }, 100);
+
+// function updateScore(score){
+//    ServiceWorkerContainer.innerHTML = "Your Score: " + score
+// }
+
+function updateScore(score) {
+    document.getElementById('scoreCont').innerHTML = "Your Score: " + score;
+}
+
+let gameInterval = setInterval(gameLoop, 100);
